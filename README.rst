@@ -25,4 +25,5 @@ Use
 ===
 
 .. code-block:: console
+
     $ rotest <test-directory> -o xml
