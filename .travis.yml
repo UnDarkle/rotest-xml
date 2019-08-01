@@ -14,14 +14,14 @@ script: tox -e $(echo py$TRAVIS_PYTHON_VERSION | tr -d .)
 after_success: coveralls
 jobs:
   include:
-  - stage: deploy
-    python: '3.6'
-    install: skip
-    script: skip
-    provider: pypi
-    on:
-      tags: true
-    distributions: sdist bdist_wheel
-    user: gregoil
-    password:
-      secure: AKJ1ylo7MAfS7I9qoVYXnKZl6gJQyE5rA40AYJ6nt2Zdi33+iy3ejw/Vq4AsHFoZ8vyU/0TQmNqoFJMNSGRSc6tvN/lvXBD8F3O+5Eufnj959h910Wk6wWCFbHZnB71jnTL9O+YvJlkVyqxR8ZV/Ks74JLt6Za5u0nCed0HzZba+aobyAsbkXTXcQ6ccl5KCYZxi/+487FD04nUXQs8FH0qraSsJ7AD+jbFK+xBmgp1CsL+nGMydrPXUBNRIJzrpE6q08QZ9EXqehTW9UtkuzTOUFUMzOqfpzJJA5cKdmD+5CRMDuev1fzBJCXt2wg4NvhSRyvgIMFtgc384HU+4fBqKYVZ45+rUjPnNmLhp+fZOs450SMTF+v3JCd1cYAENi2JEveOJWhQBr91c9mPcTuX8uJ97gU7Mi8ZlYBUuDycsnhAXbP3Y1IJVokWCS88UuGgcfYrhXVbZmNdftVggx/Ea+CBRpz+UeD9QbTv7OiDJdLBnFYaj8ioQddmnw8SMsMRBwcVJrYSb3dMiuq/zh85+nbCRnqgZI4NJ74CuH2UffROKZYKUvEhSZjlUHY6s/7JG6rD7c67dKqHSBePt0yc2hcwjOAfCpzs84VfAfJDN7gIJOn1tCVv49o+GwjHVq5pMbuUAWQ1R0LbJjZ+O6ymShoWM5TUpcRyLXtsXsig=
+    - stage: deploy
+      python: '3.6'
+      install: skip
+      script: skip
+      provider: pypi
+      on:
+        tags: true
+      distributions: sdist bdist_wheel
+      user: gregoil
+      password:
+        secure: AKJ1ylo7MAfS7I9qoVYXnKZl6gJQyE5rA40AYJ6nt2Zdi33+iy3ejw/Vq4AsHFoZ8vyU/0TQmNqoFJMNSGRSc6tvN/lvXBD8F3O+5Eufnj959h910Wk6wWCFbHZnB71jnTL9O+YvJlkVyqxR8ZV/Ks74JLt6Za5u0nCed0HzZba+aobyAsbkXTXcQ6ccl5KCYZxi/+487FD04nUXQs8FH0qraSsJ7AD+jbFK+xBmgp1CsL+nGMydrPXUBNRIJzrpE6q08QZ9EXqehTW9UtkuzTOUFUMzOqfpzJJA5cKdmD+5CRMDuev1fzBJCXt2wg4NvhSRyvgIMFtgc384HU+4fBqKYVZ45+rUjPnNmLhp+fZOs450SMTF+v3JCd1cYAENi2JEveOJWhQBr91c9mPcTuX8uJ97gU7Mi8ZlYBUuDycsnhAXbP3Y1IJVokWCS88UuGgcfYrhXVbZmNdftVggx/Ea+CBRpz+UeD9QbTv7OiDJdLBnFYaj8ioQddmnw8SMsMRBwcVJrYSb3dMiuq/zh85+nbCRnqgZI4NJ74CuH2UffROKZYKUvEhSZjlUHY6s/7JG6rD7c67dKqHSBePt0yc2hcwjOAfCpzs84VfAfJDN7gIJOn1tCVv49o+GwjHVq5pMbuUAWQ1R0LbJjZ+O6ymShoWM5TUpcRyLXtsXsig=
