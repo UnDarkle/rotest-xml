@@ -12,8 +12,8 @@ setup(
     keywords="rotest testing system django unittest",
     install_requires=[
         'rotest',
-        'future'
-        'xmltodict'
+        'future',
+        'xmltodict',
     ],
     extras_require={
         "dev": [
