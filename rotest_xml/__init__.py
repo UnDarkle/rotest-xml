@@ -32,10 +32,9 @@ class XmlHandler(AbstractResultHandler):
         xml_report_path = os.path.join(test.work_dir,
                                        self.XML_REPORT_PATH)
         with open(xml_report_path, 'wb') as xml_report:
-            print(xml_dict)
             xml_report.write(unparse(xml_dict, pretty=True))
 
-    def _add_test_report(self, test, result_description={},
+    def _add_test_report(self, test, result_description,
                          error=False, failure=False):
         """Generate an XML report for the given test in its work directory.
 
@@ -72,7 +71,7 @@ class XmlHandler(AbstractResultHandler):
         Args:
             test (object): test item instance.
         """
-        self._add_test_report(test)
+        self._add_test_report(test, {})
 
     @skip_if_not_main
     def add_skip(self, test, reason):
