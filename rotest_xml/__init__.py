@@ -22,17 +22,24 @@ class XmlHandler(AbstractResultHandler):
 
     XML_REPORT_PATH = "result.xml"
 
-    def _create_xml_report(self, test, xml_dict):
-        """Save an XML object to the report file in the test's work dir.
+    def __init__(self, *args, **kwargs):
+        super(XmlHandler, self).__init__(*args, **kwargs)
 
-        Args:
-            test (object): test item instance.
-            xml_obj (dict): the xml content's as a dict.
-        """
-        xml_report_path = os.path.join(test.work_dir,
+        self.all_results = []
+        self.error_count = 0
+        self.fail_count = 0
+
+    def _create_xml_report(self):
+        """Save an XML object to the report file in the work dir."""
+        test_suite = {"testsuite": {"testcase": self.all_results,
+                                    "@errors": str(self.error_count),
+                                    "@failures": str(self.fail_count),
+                                    "@name": self.main_test.data.name,
+                                    "@tests": str(len(self.all_results))}}
+        xml_report_path = os.path.join(self.main_test.work_dir,
                                        self.XML_REPORT_PATH)
-        with open(xml_report_path, 'wb') as xml_report:
-            xml_report.write(unparse(xml_dict, pretty=True))
+        with open(xml_report_path, 'wt') as xml_report:
+            xml_report.write(unparse(test_suite, pretty=True))
 
     def _add_test_report(self, test, result_description,
                          error=False, failure=False):
@@ -55,14 +62,14 @@ class XmlHandler(AbstractResultHandler):
         test_case = {"@classname": test_name,
                      "@name": method_name}
         test_case.update(result_description)
+        self.all_results.append(test_case)
+        if error:
+            self.error_count += 1
 
-        test_suite = {"testsuite": {"testcase": test_case,
-                                    "@errors": str(int(error)),
-                                    "@failures": str(int(failure)),
-                                    "@name": test_name,
-                                    "@tests": "1"}}
+        if failure:
+            self.fail_count += 1
 
-        self._create_xml_report(test, test_suite)
+        self._create_xml_report()
 
     @skip_if_not_main
     def add_success(self, test):
