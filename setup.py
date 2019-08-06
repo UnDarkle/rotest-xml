@@ -5,7 +5,7 @@ from setuptools import setup
 
 setup(
     name='rotest-xml',
-    version="0.2.0",
+    version="0.2.1",
     description="Xml output handler for rotest",
     long_description=open("README.rst").read(),
     license="MIT",

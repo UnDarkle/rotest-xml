@@ -8,7 +8,7 @@ import os
 from xmltodict import unparse
 from future.builtins import str
 
-from rotest.core import skip_if_not_main, TestFlow
+from rotest.core import skip_if_not_main
 from rotest.core.result.handlers.abstract_handler import AbstractResultHandler
 
 
@@ -52,15 +52,9 @@ class XmlHandler(AbstractResultHandler):
             error (bool): whether the test result is considered an Error.
             failure (bool): whether the test result is considered a Failure.
         """
-        if isinstance(test, TestFlow):
-            test_name = test.data.name
-            method_name = TestFlow.TEST_METHOD_NAME
+        test_case = {"@classname": test.__class__.__name__,
+                     "@name": test.data.name}
 
-        else:
-            test_name, method_name = test.data.name.split(".")
-
-        test_case = {"@classname": test_name,
-                     "@name": method_name}
         test_case.update(result_description)
         self.all_results.append(test_case)
         if error:
